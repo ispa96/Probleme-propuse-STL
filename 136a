@@ -1,0 +1,76 @@
+// 136a
+
+/**
+
+	Date:
+
+	Name:
+	Surname:
+
+	Faculty:
+
+	Problem:
+	Solved for:
+
+**/
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+#define FAST std::ios_base::sync_with_stdio(false), std::cin.tie(0), std::cout.tie(0)
+#define DIM 105
+#define INF 1e9
+
+/*template<typename T> static void show(const std::vector<T>& v) {
+	for (const auto& i : v)
+		std::cout << i << ' ';
+	std::cout << '\n';
+}*/
+
+static void solve() {
+	unsigned int n;
+	std::vector<unsigned int> v;
+
+	std::cin >> n;
+	v.resize(n);
+
+	for (unsigned int i = 0; i < n; i++)
+		std::cin >> v[i];
+
+	for (unsigned int i = 0; i < n; i++) {
+		/// pe ce pozitie il gasesti pe i in vectorul v
+
+		auto it = find(v.begin(), v.end(), i + 1);	/// o sa fie mereu diferit de v.end()
+		std::cout << std::distance(v.begin(), it) + 1 << ' ';
+	}
+}
+
+int main()
+{
+	FAST;
+
+	int test_cases = 1;
+	// std::cin >> test_cases;
+
+	while (test_cases--) solve();
+
+	// cout << '\n';
+	/// cerr << "Time: " << 1000 * ((double)clock()) / (double)CLOCKS_PER_SEC << "ms";
+
+	return 0;
+}
+
+
+/**
+
+	EX:
+
+	n = 4
+	v = 2 3 4 1
+	    0 1 2 3
+
+	i = 0:
+
+**/
