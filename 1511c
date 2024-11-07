@@ -1,0 +1,90 @@
+// 1511c
+
+/**
+
+	Date:
+
+	Name:
+	Surname:
+
+	Faculty:
+
+	Problem:
+	Solved for:
+
+**/
+
+
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <utility>
+
+#define FAST std::ios_base::sync_with_stdio(false), std::cin.tie(0), std::cout.tie(0)
+#define DIM 105
+#define INF 1e9
+
+static void show(const std::vector<std::pair<unsigned int, unsigned int>>& v) {
+	for (const auto& i : v)
+		std::cout << i.first << ' ' << i.second << '\n';
+}
+
+static void solve() {
+	unsigned int n, q, value;
+	std::vector<std::pair<unsigned int, unsigned int>> v;
+	std::unordered_map<unsigned int, unsigned int> fr;
+
+	std::cin >> n >> q;
+	
+	for (unsigned int i = 0; i < n; i++) {
+		std::cin >> value;
+
+		fr[value]++;
+		if (fr[value] == 1) 
+			v.emplace_back(std::make_pair(value, i));
+	}
+
+	// show(v);
+
+	while (q--) {
+		std::cin >> value;
+		
+		for (auto it = v.begin(); it != v.end(); it++) {
+			if (it->first == value) {
+				for (auto it1 = v.begin(); it1 != it; it1++)
+					it1->second++;
+
+				std::cout << it->second + 1 << ' ';
+				v.erase(it);
+				v.insert(v.begin(), std::make_pair(value, 0));
+				break;
+			}
+		}
+	}
+}
+
+int main()
+{
+	FAST;
+
+	int test_cases = 1;
+	// std::cin >> test_cases;
+
+	while (test_cases--)
+		solve();
+
+	// cout << '\n';
+	/// cerr << "Time: " << 1000 * ((double)clock()) / (double)CLOCKS_PER_SEC << "ms";
+
+	return 0;
+}
+
+
+/**
+
+	EX:
+
+
+
+**/
